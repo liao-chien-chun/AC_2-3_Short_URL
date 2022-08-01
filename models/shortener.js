@@ -3,7 +3,11 @@ const Schema = mongoose.Schema //載入mongoose的Schema
 
 //建立一個Schema
 const shortenerSchema = new Schema({
-  url: {
+  originalURL: {
+    type: String,
+    required: true
+  },
+  shortURL: {
     type: String,
     required: true
   }

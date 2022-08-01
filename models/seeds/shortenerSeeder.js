@@ -6,8 +6,9 @@ const db = require('../../config/mongoose')
 //成功
 db.once('open', () => {
   console.log('add Seed data')
-  for (let i = 1; i < 6; i++) {
-    Shortener.create({ url: `url-${i}`})
-  }
+  Shortener.create({
+    originalURL: 'https://www.facebook.com/meeric.tony/',
+    shortURL: 'http//localhost:3000/123AB'
+  })
   console.log('done')
 })
