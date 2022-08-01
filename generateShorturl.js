@@ -13,7 +13,8 @@ function generateShortUrl (URL) {
   }
   
   const shortUrl = myApp + newUrl
+  return shortUrl
 }
 
-
+module.exports = generateShortUrl
 

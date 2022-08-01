@@ -1,6 +1,9 @@
 const express = require('express')
 const router = express.Router()
 
+//引入創造短網址函式
+const generateShortUrl = require('../../generateShorturl')
+
 // 引用Shortener model
 const Shortener = require('../../models/shortener')
 
@@ -17,7 +20,8 @@ router.post('/', (req, res) => {
         return res.render('new')
       } else {
         console.log('此網址不存在')
-        return Shortener.create({ originalURL: URL })
+        const shortURL = generateShortUrl(URL)
+        return Shortener.create({ originalURL: URL, shortURL: shortURL })
           .then(() => res.redirect('/'))
           .catch(err => console.log(err))
       }

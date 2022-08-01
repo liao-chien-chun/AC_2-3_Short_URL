@@ -7,10 +7,10 @@ const shortenerSchema = new Schema({
     type: String,
     required: true
   },
-  // shortURL: {
-  //   type: String,
-  //   required: true
-  // }
+  shortURL: {
+    type: String,
+    required: true
+  }
 })
 
 //匯出
