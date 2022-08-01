@@ -16,7 +16,8 @@ app.set('view engine', 'hbs') //啟用樣版引擎
 
 //將請求導入路由器
 app.use(routes)
-
+//設定靜態檔案
+app.use(express.static('public'))
 
 app.listen(port, () => {
   console.log(`server is running on localhost:${port}`)
