@@ -3,6 +3,10 @@ const exphbs = require('express-handlebars') ////載入express-handlebars
 
 const routes = require('./routes') //引用路由器
 
+//引用mongoose連線設定
+//Mongoose 連線設定只需要被執行，不需要接到任何回傳參數利用，所以不需要再設定變數
+require('./config/mongoose')
+
 const port = 3000
 const app = express()
 
