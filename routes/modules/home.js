@@ -5,11 +5,12 @@ const router = express.Router()
 const Shortener = require('../../models/shortener')
 
 router.get('/', (req, res) => {
-  Shortener.find()
-    .lean()
-    .sort({ _id: 'asc' })  //排列
-    .then(shorteners => res.render('index', { shorteners }))
-    .catch(err => console.log(err))
+  res.render('index')
+  // Shortener.find()
+  //   .lean()
+  //   // .sort({ _id: 'asc' })  //排列
+  //   .then(shorteners => res.render('index', { shorteners }))
+  //   .catch(err => console.log(err))
 })
 
 module.exports = router
