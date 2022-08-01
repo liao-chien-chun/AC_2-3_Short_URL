@@ -1,5 +1,6 @@
 const express = require('express')  //載入express
 const exphbs = require('express-handlebars') ////載入express-handlebars
+const bodyParser = require('body-parser') //載入body-parser 不用下載
 
 const routes = require('./routes') //引用路由器
 
@@ -18,6 +19,7 @@ app.set('view engine', 'hbs') //啟用樣版引擎
 app.use(routes)
 //設定靜態檔案
 app.use(express.static('public'))
+app.use(bodyParser.urlencoded({ extended: true }))
 
 app.listen(port, () => {
   console.log(`server is running on localhost:${port}`)
