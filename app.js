@@ -15,11 +15,12 @@ const app = express()
 app.engine('hbs', exphbs.engine({ defaultLayout: 'main', extname: '.hbs'}))
 app.set('view engine', 'hbs') //啟用樣版引擎
 
-//將請求導入路由器
-app.use(routes)
+
+app.use(bodyParser.urlencoded({ extended: true }))
 //設定靜態檔案
 app.use(express.static('public'))
-app.use(bodyParser.urlencoded({ extended: true }))
+//將請求導入路由器
+app.use(routes)
 
 app.listen(port, () => {
   console.log(`server is running on localhost:${port}`)
