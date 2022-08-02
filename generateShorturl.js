@@ -1,5 +1,5 @@
 function generateShortUrl () {
-  let newUrl = ''
+  let shortUrl = ''
 
   const lowerCaseLetters = 'abcdefghijklmnopqrstuvwxyz'
   const uperCaseLetters = lowerCaseLetters.toUpperCase()
@@ -8,10 +8,9 @@ function generateShortUrl () {
   const collection = lowerCaseLetters + uperCaseLetters + number
   
   for (let i = 0; i < 5; i++) {
-    newUrl += collection[Math.floor(Math.random() * collection.length)]
+    shortUrl += collection[Math.floor(Math.random() * collection.length)]
   }
   
-  const shortUrl = myApp + newUrl
   return shortUrl
 }
 

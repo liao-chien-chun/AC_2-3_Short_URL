@@ -1,3 +1,4 @@
+const { urlencoded } = require('body-parser')
 const express = require('express')
 const router = express.Router()
 
@@ -13,19 +14,20 @@ router.get('/', (req, res) => {
 
 
 router.post('/', (req, res) => {
-  const newUrl = req.body.url
-  Shortener.find()
-    .lean()
-    .then(url => {                         //url是一個陣列
-      const urlData = url.filter
-      (data => 
-        // console.log(data.originalURL)
-        // console.log(newUrl)
-        data.originalURL === newUrl
-      )
-      res.render('new', { url: urlData[0] })
-    })  
-  
+  const url = req.body.url
+  Shortener.findOne({ originalURL: url })
+    .then(data => {
+      if (data) {
+        console.log('此網址已存在')
+        res.render('exist', { shortURL: data.shortURL, originalURL: data.originalURL })
+      } else {
+        console.log('此網址不存在')
+        Shortener.create({
+          originalURL: url, shortURL: 'http://localhost/' + generateShortUrl() })
+          .then(() => res.render('new', { originalURL: url, shortURL: 'http://localhost/' + generateShortUrl() }))
+      }
+    })
+
 })
 
 router.get('/:shortURL', (req, res) => {
