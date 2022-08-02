@@ -1,5 +1,4 @@
-function generateShortUrl (URL) {
-  const myApp = 'http://localhost:3000/'
+function generateShortUrl () {
   let newUrl = ''
 
   const lowerCaseLetters = 'abcdefghijklmnopqrstuvwxyz'

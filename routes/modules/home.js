@@ -11,20 +11,34 @@ router.get('/', (req, res) => {
   res.render('index')
 })
 
+
 router.post('/', (req, res) => {
-  const URL = req.body.URL
-  Shortener.findOne({ originalURL: URL })
-    .then(url => { 
-      if(url) {
-        console.log('此網址已經存在')
-        return res.render('new')
-      } else {
-        console.log('此網址不存在')
-        const shortURL = generateShortUrl(URL)
-        return Shortener.create({ originalURL: URL, shortURL: shortURL })
-          .then(() => res.redirect('/'))
-          .catch(err => console.log(err))
+  const newUrl = req.body.url
+  Shortener.find()
+    .lean()
+    .then(url => {                         //url是一個陣列
+      const urlData = url.filter
+      (data => 
+        // console.log(data.originalURL)
+        // console.log(newUrl)
+        data.originalURL === newUrl
+      )
+      res.render('new', { url: urlData[0] })
+    })  
+  
+})
+
+router.get('/:shortURL', (req, res) => {
+  const { shortURL } = req.params
+  const url = 'http://localhost' + shortURL
+  console.log(req.headers.host)
+
+  Shortener.findOne({ url })
+    .then(data => {
+      if(!data) {
+        return res.render('error')
       }
+      res.redirect(data.originalURL)
     })
     .catch(err => console.log(err))
 })
