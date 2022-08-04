@@ -8,13 +8,22 @@ const generateShortUrl = require('../../generateShorturl')
 // 引用Shortener model
 const Shortener = require('../../models/shortener')
 
+//首頁路由
 router.get('/', (req, res) => {
   res.render('index')
 })
 
 
+//提交表單路由
 router.post('/', (req, res) => {
   const url = req.body.url
+
+  //使用者沒有輸入網址就送出請求
+  //防止使用者沒有輸入內容，就按下了送出鈕，跳轉到提示頁面
+  if (!url) {
+    return res.render('noContent')
+  }
+
   Shortener.findOne({ originalURL: url })
     .then(data => {
       if (data) {
