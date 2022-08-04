@@ -19,5 +19,21 @@
   <!-- Bootstrap js-->
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
     integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+  
+  <!-- 一鍵複製函式 -->
+  {{!-- 使用Clipboard API提供非同步讀取和寫入操 --}}
+  <script>
+    function copy() {
+      const content = document.getElementById('Url').innerText
+
+      navigator.clipboard.writeText(content)
+        .then(() => {
+          console.log("text copied to clipboard.")
+        })
+        .catch(err => {
+          console.log('something went wrong', err)
+        })
+    }
+  </script>
 </body>
 </html>

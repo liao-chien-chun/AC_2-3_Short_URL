@@ -6,10 +6,10 @@
   <div class="form mt-5">
     <h4>此網址已經縮址過了，縮網址如下</h4>
     <div>
-      <a href="{{ originalURL }}">{{ shortURL }}</a>
+      <a href="{{ originalURL }}" id="Url">{{ shortURL }}</a>
     </div>
     <div class="text-center mt-3">
-      <button type="button" class="btn btn-primary">copy</button>
+      <button onclick="copy()" class="btn btn-primary">copy</button>
     </div>
     </form>
   </div>
