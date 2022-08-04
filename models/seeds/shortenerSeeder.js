@@ -9,11 +9,11 @@ db.once('open', () => {
   Shortener.create(
     {
       originalURL: 'https://www.facebook.com/',
-      shortURL: 'http//localhost:3000/123AB'
+      shortURL: 'http://localhost:3000/123AB'
     },
     {
       originalURL: 'https://www.youtube.com/',
-      shortURL: 'http//localhost:3000/456CD'
+      shortURL: 'http://localhost:3000/456CD'
     }
   )
   console.log('done')
