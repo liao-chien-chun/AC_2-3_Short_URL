@@ -51,15 +51,17 @@ router.post('/', (req, res) => {
 router.get('/:shortURL', (req, res) => {
   const { shortURL } = req.params
   const url = 'http://localhost:3000/' + shortURL
+  console.log(url)
 
-  Shortener.findOne({ url })
+  Shortener.findOne({ shortURL: url })
     .then(data => {
+      //如果輸入的縮網址不存在則導向錯誤處理頁面提示錯誤訊息
       if(!data) {
         return res.render('error')
       }
       res.redirect(data.originalURL)
     })
-    .catch(err => console.log(err))
+    .catch(err => res.render('error', { err }))
 })
 
 module.exports = router
